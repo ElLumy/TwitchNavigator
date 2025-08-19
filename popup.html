@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch Auto-Navigator con IA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <span class="icon">🎮</span>
+                <h1>Twitch AI Navigator</h1>
+            </div>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Inactivo</span>
+            </div>
+        </div>
+
+        <!-- Control Principal -->
+        <div class="main-controls">
+            <button id="toggleBtn" class="btn btn-primary">
+                <span id="toggleBtnText">Iniciar Navegación</span>
+            </button>
+        </div>
+
+        <!-- Timers Display -->
+        <div class="timers-section">
+            <h2>⏱️ Temporizadores Activos</h2>
+            
+            <div class="timer-card">
+                <div class="timer-header">
+                    <span class="timer-icon">🔄</span>
+                    <span class="timer-title">Cambio de Canal</span>
+                </div>
+                <div class="timer-display" id="channelTimer">--:--:--</div>
+                <button class="btn btn-secondary btn-small" id="forceChannelBtn">
+                    Forzar Ahora
+                </button>
+            </div>
+
+            <div class="timer-card">
+                <div class="timer-header">
+                    <span class="timer-icon">📂</span>
+                    <span class="timer-title">Nueva Pestaña</span>
+                </div>
+                <div class="timer-display" id="tabTimer">--:--:--</div>
+                <button class="btn btn-secondary btn-small" id="forceTabBtn">
+                    Abrir Ahora
+                </button>
+            </div>
+        </div>
+
+        <!-- Estado Actual -->
+        <div class="status-section">
+            <h2>📊 Estado Actual</h2>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Estado:</span>
+                    <span class="info-value" id="currentState">Inactivo</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Canal Original:</span>
+                    <span class="info-value" id="originalChannel">Ninguno</span>
+                </div>
+                
+                <div class="info-item">
+                    <span class="info-label">Última Acción:</span>
+                    <span class="info-value" id="lastAction">Ninguna</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuración Rápida -->
+        <div class="config-section">
+            <h2>⚙️ Configuración</h2>
+            
+            <div class="config-item">
+                <label for="aiMode">Modo IA:</label>
+                <select id="aiMode" class="select">
+                    <option value="balanced">Balanceado</option>
+                    <option value="popular">Preferir Populares</option>
+                    <option value="diverse">Diverso</option>
+                    <option value="random">Completamente Aleatorio</option>
+                </select>
+            </div>
+            
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="autoStart"> 
+                    Auto-iniciar en Twitch
+                </label>
+            </div>
+            
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="notificationsEnabled"> 
+                    Notificaciones
+                </label>
+            </div>
+        </div>
+
+        <!-- Historial Reciente -->
+        <div class="history-section">
+            <h2>📝 Historial Reciente</h2>
+            <div class="history-list" id="historyList">
+                <div class="history-item">
+                    <span class="history-time">--:--</span>
+                    <span class="history-action">Esperando primera acción...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="version">v1.0.0</div>
+            <div class="links">
+                <button class="btn-link" id="resetBtn">🔄 Reset</button>
+                <button class="btn-link" id="helpBtn">❓ Ayuda</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Comunicando con Twitch...</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="popup.js"></script>
+</body>
+</html>
